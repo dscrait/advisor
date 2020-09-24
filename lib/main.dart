@@ -1,8 +1,11 @@
+import 'package:advisor/src/components/home/home.controller.dart';
+import 'package:advisor/src/services/advice_api.dart';
 import 'package:flutter/material.dart';
 import 'package:momentum/momentum.dart';
 // Because https://github.com/xamantra/momentum/issues/31
 // ignore: implementation_imports
 import 'package:momentum/src/momentum_router.dart' as momentum_router;
+import 'src/pages/home.dart';
 import 'src/services/client_db.dart';
 
 void main() {
@@ -11,9 +14,11 @@ void main() {
 
 Momentum momentum() {
   return Momentum(
-    controllers: [],
+    controllers: [HomeController()],
     services: [
-      ClientDB()
+      ClientDB(),
+      momentum_router.Router([Home()]),
+      ConcreteAdviceRepository()
     ],
     child: Advisor(),
   );
